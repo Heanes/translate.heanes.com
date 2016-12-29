@@ -1,6 +1,6 @@
 <!doctype html>
 
-<title>CodeMirror: User Manual</title>
+<title>CodeMirror: 用户指导手册</title>
 <meta charset="utf-8"/>
 <link rel=stylesheet href="docs.css">
 <script src="activebookmark.js"></script>
@@ -26,39 +26,39 @@
 <div id=nav>
   <a href="http://codemirror.net"><h1>CodeMirror</h1><img id=logo src="logo.png"></a>
   <ul>
-    <li><a href="../index.html">Home</a></li>
-    <li><a href="#overview" class=active data-default="true">Manual</a></li>
-    <li><a href="https://github.com/codemirror/codemirror">Code</a></li>
+    <li><a href="../index.html">主页</a></li>
+    <li><a href="#overview" class=active data-default="true">指导手册</a></li>
+    <li><a href="https://github.com/codemirror/codemirror">代码</a></li>
   </ul>
   <ul>
-    <li><a href="#usage">Basic Usage</a></li>
-    <li><a href="#config">Configuration</a></li>
-    <li><a href="#events">Events</a></li>
-    <li><a href="#keymaps">Key maps</a></li>
-    <li><a href="#commands">Commands</a></li>
-    <li><a href="#styling">Customized Styling</a></li>
-    <li><a href="#api">Programming API</a>
+    <li><a href="#usage">基础用法</a></li>
+    <li><a href="#config">配置</a></li>
+    <li><a href="#events">事件</a></li>
+    <li><a href="#keymaps">快捷键映射</a></li>
+    <li><a href="#commands">命令</a></li>
+    <li><a href="#styling">定制样式</a></li>
+    <li><a href="#api">可编程API</a>
       <ul>
-        <li><a href="#api_constructor">Constructor</a></li>
-        <li><a href="#api_content">Content manipulation</a></li>
-        <li><a href="#api_selection">Selection</a></li>
-        <li><a href="#api_configuration">Configuration</a></li>
-        <li><a href="#api_doc">Document management</a></li>
-        <li><a href="#api_history">History</a></li>
-        <li><a href="#api_marker">Text-marking</a></li>
-        <li><a href="#api_decoration">Widget, gutter, and decoration</a></li>
-        <li><a href="#api_sizing">Sizing, scrolling, and positioning</a></li>
-        <li><a href="#api_mode">Mode, state, and tokens</a></li>
-        <li><a href="#api_misc">Miscellaneous methods</a></li>
-        <li><a href="#api_static">Static properties</a></li>
+        <li><a href="#api_constructor">构造方法</a></li>
+        <li><a href="#api_content">内容操作</a></li>
+        <li><a href="#api_selection">选中</a></li>
+        <li><a href="#api_configuration">配置</a></li>
+        <li><a href="#api_doc">文档管理</a></li>
+        <li><a href="#api_history">历史</a></li>
+        <li><a href="#api_marker">文本标记</a></li>
+        <li><a href="#api_decoration">小部件, 扩展, 和装饰</a></li>
+        <li><a href="#api_sizing">大小, 滚动, 和定位</a></li>
+        <li><a href="#api_mode">模式, 状态, 和符号</a></li>
+        <li><a href="#api_misc">相当多的方法</a></li>
+        <li><a href="#api_static">静态属性</a></li>
       </ul>
     </li>
-    <li><a href="#addons">Addons</a></li>
-    <li><a href="#modeapi">Writing CodeMirror Modes</a></li>
-    <li><a href="#vimapi">Vim Mode API</a>
+    <li><a href="#addons">增强</a></li>
+    <li><a href="#modeapi">CodeMirror编写模式</a></li>
+    <li><a href="#vimapi">Vim模式API</a>
       <ul>
-        <li><a href="#vimapi_configuration">Configuration</a></li>
-        <li><a href="#vimapi_extending">Extending VIM</a></li>
+        <li><a href="#vimapi_configuration">配置</a></li>
+        <li><a href="#vimapi_extending">扩展VIM</a></li>
       </ul>
     </li>
   </ul>
@@ -68,19 +68,13 @@
 
 <section class=first id=overview>
     <h2 style="position: relative">
-      User manual and reference guide
-      <span style="color: #888; font-size: 1rem; position: absolute; right: 0; bottom: 0">version 5.21.0</span>
+      用户手册和参考说明
+      <span style="color: #888; font-size: 1rem; position: absolute; right: 0; bottom: 0">版本 5.21.0</span>
     </h2>
 
-    <p>CodeMirror is a code-editor component that can be embedded in
-    Web pages. The core library provides <em>only</em> the editor
-    component, no accompanying buttons, auto-completion, or other IDE
-    functionality. It does provide a rich API on top of which such
-    functionality can be straightforwardly implemented. See
-    the <a href="#addons">addons</a> included in the distribution,
-    and the <a href="https://github.com/codemirror/CodeMirror/wiki/CodeMirror-addons">list
-    of externally hosted addons</a>, for reusable
-    implementations of extra features.</p>
+    <p>CodeMirror是一个可以嵌入到网页中的代码编辑工具组件。其核心库<em>仅仅只</em>提供编辑器组件，没有组合按钮，没有自动完成，或者其他IDE常见的功能。
+    但是它提供了丰富的API，基于此其上提到的功能可以直接实现。查看分发包中包含的<a href="#addons">插件</a>，
+    以及<a href="https://github.com/codemirror/CodeMirror/wiki/CodeMirror-addons">外部托管插件列表</a>，以重复使用额外功能。</p>
 
     <p>CodeMirror works with language-specific modes. Modes are
     JavaScript programs that help color (and optionally indent) text
