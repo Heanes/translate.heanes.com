@@ -114,37 +114,22 @@
         当给定一个DOM元素时，将其插入到文件某处，这个可以用于例如将textarea替换为真正的编辑器。
     </p>
 
-    <p>In cases where you don't want to append the editor to an
-    element, and need more control over the way it is inserted, the
-    first argument to the <code>CodeMirror</code> function can also
-    be a function that, when given a DOM element, inserts it into the
-    document somewhere. This could be used to, for example, replace a
-    textarea with a real editor:</p>
-
     <pre data-lang="javascript">var myCodeMirror = CodeMirror(function(elt) {
   myTextArea.parentNode.replaceChild(elt, myTextArea);
 }, {value: myTextArea.value});</pre>
 
-    <p>However, for this use case, which is a common way to use
-    CodeMirror, the library provides a much more powerful
-    shortcut:</p>
+    <p>但是，对于使用CodeMirror的常用方法，该库提供了一种更加强大的快捷方式：</p>
 
     <pre data-lang="javascript">var myCodeMirror = CodeMirror.fromTextArea(myTextArea);</pre>
 
-    <p>This will, among other things, ensure that the textarea's value
-    is updated with the editor's contents when the form (if it is part
-    of a form) is submitted. See the <a href="#fromTextArea">API
-    reference</a> for a full description of this method.</p>
+    <p>除此之外，当表单提交时（如果是表单的一部分的话）将确保textarea的值随编辑器的内容更新。
+        参见<a href="#fromTextArea">API参考</a>对于此方法的完整说明</p>
 
-    <h3 id=modloader>Module loaders</h3>
+    <h3 id=modloader>模块加载</h3>
 
-    <p>The files in the CodeMirror distribution contain shims for
-    loading them (and their dependencies) in AMD or CommonJS
-    environments. If the variables <code>exports</code>
-    and <code>module</code> exist and have type object, CommonJS-style
-    require will be used. If not, but there is a
-    function <code>define</code> with an <code>amd</code> property
-    present, AMD-style (RequireJS) will be used.</p>
+    <p>在CodeMirror发行版的文件包含用于加载在AMD或者CommonJS环境中加载它们（及其依赖关系）的垫片。
+        如果变量<code>exports</code>、<code>module</code>存在并具有类型对象，将会使用CommonJS风格。
+        如果没有，但是有一个函数<code>定义</code>与<code>amd</code>属性存在，将会使用AMD风格（RequireJS）</p>
 
     <p>It is possible to
     use <a href="http://browserify.org/">Browserify</a> or similar
