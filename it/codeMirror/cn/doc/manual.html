@@ -171,47 +171,30 @@
     <p>选项不以任何方式检查，因此设置假选项值必然会导致奇数错误。</p>
     <p>这些事支持的选项：</p>
     <dl>
-        <dt id="option_value"><code><strong>value</strong>: string|CodeMirror.Doc</code></dt>
+        <dt id="option_value"><code><strong>value(值)</strong>: string|CodeMirror.Doc</code></dt>
         <dd>编辑器的起始值。能够是字符串，或者<a href="#api_doc">document object</a>。</dd>
 
-        <dt id="option_mode"><code><strong>mode</strong>: string|object</code></dt>
-        <dd>The mode to use. When not given, this will default to the
-        first mode that was loaded. It may be a string, which either
-        simply names the mode or is
-        a <a href="http://en.wikipedia.org/wiki/MIME">MIME</a> type
-        associated with the mode. Alternatively, it may be an object
-        containing configuration options for the mode, with
-        a <code>name</code> property that names the mode (for
-        example <code>{name: "javascript", json: true}</code>). The demo
-        pages for each mode contain information about what configuration
-        parameters the mode supports. You can ask CodeMirror which modes
-        and MIME types have been defined by inspecting
-        the <code>CodeMirror.modes</code>
-        and <code>CodeMirror.mimeModes</code> objects. The first maps
-        mode names to their constructors, and the second maps MIME types
-        to mode specs.</dd>
+        <dt id="option_mode"><code><strong>mode(模式)</strong>: string|object</code></dt>
+        <dd>
+            使用的模式。 当没有给出时，这将默认为加载的第一个模式。
+            它可以是一个字符串，它可以简单地命名模式，也可以是与模式相关联的<a href="http://en.wikipedia.org/wiki/MIME">MIME</a>类型。
+            或者，它可以是包含模式的配置选项的对象，其<code>名称</code>属性指定模式（例如{name：“javascript”，json：true}）。
+            每个模式的演示页面包含有关模式支持的配置参数的信息。您可以通过检查<code>CodeMirror.modes</code>
+            和<code>CodeMirror.mimeModes</code>对象来询问CodeMirror已定义哪些模式和MIME类型。
+            第一个将模式名称映射到其构造函数，第二个将MIME类型映射到模式规范。
+        </dd>
 
-        <dt id="option_lineSeparator"><code><strong>lineSeparator</strong>: string|null</code></dt>
-        <dd>Explicitly set the line separator for the editor. By default
-        (value <code>null</code>), the document will be split on CRLFs
-        as well as lone CRs and LFs, and a single LF will be used as
-        line separator in all output (such
-        as <a href="#getValue"><code>getValue</code></a>). When a
-        specific string is given, lines will only be split on that
-        string, and output will, by default, use that same
-        separator.</dd>
+        <dt id="option_lineSeparator"><code><strong>lineSeparator(行分隔符)</strong>: string|null</code></dt>
+        <dd>明确的给编辑器设置行分隔符. 默认情况下(值为null)，文档将在CRLF以及单个CR和LF上分割，
+            并且单个LF将用作所有输出（如<a href="#getValue"><code>getValue</code></a>）中的行分隔符。
+            当给定一个特定的字符串时，行只会在该字符串上分割，输出默认情况下使用相同的分隔符。
+        </dd>
 
-        <dt id="option_theme"><code><strong>theme</strong>: string</code></dt>
-        <dd>The theme to style the editor with. You must make sure the
-        CSS file defining the corresponding <code>.cm-s-[name]</code>
-        styles is loaded (see
-        the <a href="../theme/"><code>theme</code></a> directory in the
-        distribution). The default is <code>"default"</code>, for which
-        colors are included in <code>codemirror.css</code>. It is
-        possible to use multiple theming classes at once—for
-        example <code>"foo bar"</code> will assign both
-        the <code>cm-s-foo</code> and the <code>cm-s-bar</code> classes
-        to the editor.</dd>
+        <dt id="option_theme"><code><strong>theme(主题)</strong>: string</code></dt>
+        <dd>主题规定了编辑器的样式. 您必须确保加载了定义相应的.cm-s- [name]样式的CSS文件（请参阅发行版中的<a href="../theme/"><code>theme(主题)</code></a>目录）。
+            默认的主题样式是<code>"default"</code>，对于颜色的定义都包含在<code>codemirror.css</code>中。
+            可以一次使用多个主题类，例如<code>"foo bar"</code>会将<code>cm-s-foo</code>和<code>cm-s-bar</code>类分配给编辑器。
+        </dd>
 
         <dt id="option_indentUnit"><code><strong>indentUnit</strong>: integer</code></dt>
         <dd>How many spaces a block (whatever that means in the edited
