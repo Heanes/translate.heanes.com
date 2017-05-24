@@ -196,29 +196,23 @@
             可以一次使用多个主题类，例如<code>"foo bar"</code>会将<code>cm-s-foo</code>和<code>cm-s-bar</code>类分配给编辑器。
         </dd>
 
-        <dt id="option_indentUnit"><code><strong>indentUnit</strong>: integer</code></dt>
-        <dd>How many spaces a block (whatever that means in the edited
-        language) should be indented. The default is 2.</dd>
+        <dt id="option_indentUnit"><code><strong>indentUnit(缩进单位)</strong>: integer</code></dt>
+        <dd>一个区块（编辑语言中的任何意义）应该缩进多少空格。默认值是2</dd>
 
-        <dt id="option_smartIndent"><code><strong>smartIndent</strong>: boolean</code></dt>
-        <dd>Whether to use the context-sensitive indentation that the
-        mode provides (or just indent the same as the line before).
-        Defaults to true.</dd>
+        <dt id="option_smartIndent"><code><strong>smartIndent(智能缩进)</strong>: boolean</code></dt>
+        <dd>是否使用模式提供的上下文相关缩进（或者只是缩进与之前相同的行）。默认为true。</dd>
 
-        <dt id="option_tabSize"><code><strong>tabSize</strong>: integer</code></dt>
-        <dd>The width of a tab character. Defaults to 4.</dd>
+        <dt id="option_tabSize"><code><strong>tabSize(tab键宽度)</strong>: integer</code></dt>
+        <dd>一个tab符号的宽度。默人为4。</dd>
 
-        <dt id="option_indentWithTabs"><code><strong>indentWithTabs</strong>: boolean</code></dt>
-        <dd>Whether, when indenting, the first N*<code>tabSize</code>
-        spaces should be replaced by N tabs. Default is false.</dd>
+        <dt id="option_indentWithTabs"><code><strong>indentWithTabs(以tab缩进)</strong>: boolean</code></dt>
+        <dd>当缩进时，是否应该先用N个tab替换第一个N * <code>tabSize</code>空格。默认值为false。</dd>
 
         <dt id="option_electricChars"><code><strong>electricChars</strong>: boolean</code></dt>
-        <dd>Configures whether the editor should re-indent the current
-        line when a character is typed that might change its proper
-        indentation (only works if the mode supports indentation).
-        Default is true.</dd>
+        <dd>配置编辑器是否在键入字符时当会更改其正确缩进时重新缩进当前行（仅当模式支持缩进时才起作用）。默认为true。</dd>
 
-        <dt id="option_specialChars"><code><strong>specialChars</strong>: RegExp</code></dt>
+        <dt id="option_specialChars"><code><strong>specialChars(特殊字符)</strong>: RegExp</code></dt>
+        <dd></dd>
         <dd>A regular expression used to determine which characters
         should be replaced by a
         special <a href="#option_specialCharPlaceholder">placeholder</a>.
