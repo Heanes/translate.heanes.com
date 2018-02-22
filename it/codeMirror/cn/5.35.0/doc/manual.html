@@ -209,84 +209,55 @@
         <dd>当缩进时，是否应该先用N个tab替换第一个N * <code>tabSize</code>空格。默认值为false。</dd>
 
         <dt id="option_electricChars"><code><strong>electricChars</strong>: boolean</code></dt>
-        <dd>配置编辑器是否在键入字符时当会更改其正确缩进时重新缩进当前行（仅当模式支持缩进时才起作用）。默认为true。</dd>
+        <dd>配置编辑器是否在键入字符时-当会更改其正确缩进时-重新缩进当前行（仅当模式支持缩进时才起作用）。默认为true。</dd>
 
         <dt id="option_specialChars"><code><strong>specialChars(特殊字符)</strong>: RegExp</code></dt>
-        <dd>A regular expression used to determine which characters
-      should be replaced by a
-      special <a href="#option_specialCharPlaceholder">placeholder</a>.
-      Mostly useful for non-printing special characters. The default
-      is <code>/[\u0000-\u001f\u007f-\u009f\u00ad\u061c\u200b-\u200f\u2028\u2029\ufeff]/</code>.</dd>
-      <dt id="option_specialCharPlaceholder"><code><strong>specialCharPlaceholder</strong>: function(char) → Element</code></dt>
-      <dd>A function that, given a special character identified by
-      the <a href="#option_specialChars"><code>specialChars</code></a>
-      option, produces a DOM node that is used to represent the
-      character. By default, a red dot (<span style="color: red">•</span>)
-      is shown, with a title tooltip to indicate the character code.</dd>
+      <dd>正则表达式用于确定哪些字符由特殊<a href="#option_specialCharPlaceholder">占位符</a>替换。非常适用于非打印特殊字符。默认的是
+        <code>/[\u0000-\u001f\u007f-\u009f\u00ad\u061c\u200b-\u200f\u2028\u2029\ufeff]/</code>.</dd>
+      <dt id="option_specialCharPlaceholder"><code><strong>specialCharPlaceholder(特殊字符占位符)</strong>: function(char) → Element</code></dt>
+      <dd>给定由<a href="#option_specialChars"><code>specialChars</code></a>选项标识的特殊字符的函数会生成一个用于表示字符的DOM节点。 默认情况下，会显示一个红点（<span style="color: red">•</span>），标题工具提示表示字符代码。</dd>
 
       <dt id="option_rtlMoveVisually"><code><strong>rtlMoveVisually</strong>: boolean</code></dt>
-      <dd>Determines whether horizontal cursor movement through
-      right-to-left (Arabic, Hebrew) text is visual (pressing the left
-      arrow moves the cursor left) or logical (pressing the left arrow
-      moves to the next lower index in the string, which is visually
-      right in right-to-left text). The default is <code>false</code>
-      on Windows, and <code>true</code> on other platforms.</dd>
+      <dd>确定通过从右到左（Arabic阿拉伯文，Hebrew希伯来文）文本的水平光标移动是可视的（按左箭头向左移动光标）还是逻辑移动（按下左箭头移动到字符串中下一个较低的索引，在从右到左的文本中）。
+        Windows上的默认值为<code>false</code>，在其他平台上为<code>true</code>。
+      </dd>
 
       <dt id="option_keyMap"><code><strong>keyMap</strong>: string</code></dt>
-      <dd>Configures the key map to use. The default
-      is <code>"default"</code>, which is the only key map defined
-      in <code>codemirror.js</code> itself. Extra key maps are found in
-      the <a href="../keymap/"><code>key map</code></a> directory. See
-      the <a href="#keymaps">section on key maps</a> for more
-      information.</dd>
+      <dd>配置要使用的键映射。 默认值是<code>"default"</code>，这是<code>codemirror.js</code>中定义的唯一键映射。
+        在<a href="../keymap/"><code>key map(键映射)</code></a>目录中找到额外的键映射。 有关更多信息，请参阅<a href="#keymaps">关键地图</a>部分。</dd>
 
-      <dt id="option_extraKeys"><code><strong>extraKeys</strong>: object</code></dt>
-      <dd>Can be used to specify extra key bindings for the editor,
-      alongside the ones defined
-      by <a href="#option_keyMap"><code>keyMap</code></a>. Should be
-      either null, or a valid <a href="#keymaps">key map</a> value.</dd>
+      <dt id="option_extraKeys"><code><strong>extraKeys(额外键)</strong>: object</code></dt>
+      <dd>可以用来为编辑器指定额外的键绑定，以及由<a href="#option_keyMap"><code>keyMap</code></a>定义的键绑定。 应该为null或有效的<a href="#keymaps">key map(键映射)</a>值。</dd>
 
       <dt id="option_configureMouse"><code><strong>configureMouse</strong>: fn(cm: CodeMirror, repeat: "single" | "double" | "triple", event: Event) → Object</code></dt>
-      <dd>Allows you to configure the behavior of mouse selection and
-      dragging. The function is called when the left mouse button is
-      pressed. The returned object may have the following properties:
+      <dd>允许您配置鼠标选择和拖动的行为。该功能在按下鼠标左键时被调用。返回的对象可能具有以下属性：
         <dl>
           <dt><code><strong>unit</strong>: "char" | "word" | "line" | "rectangle" | fn(CodeMirror, Pos) → {from: Pos, to: Pos}</code></dt>
-          <dd>The unit by which to select. May be one of the built-in
-          units, or a function that takes a position and returns a
-          range around that, for a custom unit.</dd>
+          <dd>要选择的单位。 对于自定义单位，可以是内置单位之一，也可以是需要位置并返回范围的函数。</dd>
           <dt><code><strong>extend</strong>: bool</code></dt>
-          <dd>Whether to extend the existing selection range or start a new one.</dd>
+          <dd>是扩展现有的选择范围还是开始新的选择范围。</dd>
           <dt><code><strong>addNew</strong>: bool</code></dt>
-          <dd>When enabled, this adds a new range to the existing selection, rather than replacing it.</dd>
+          <dd>启用后，这会为现有选择添加一个新范围，而不是替换它。</dd>
           <dt><code><strong>moveOnDrag</strong>: bool</code></dt>
-          <dd>When the mouse even drags content around inside the
-          editor, this controls whether it is copied (false) or moved
-          (true).</dt>
+          <dd>当鼠标在编辑器内部拖动内容时，它会控制它是复制（false）还是移动（true）。</dd>
         </dl>
       </dd>
 
       <dt id="option_lineWrapping"><code><strong>lineWrapping</strong>: boolean</code></dt>
-      <dd>Whether CodeMirror should scroll or wrap for long lines.
-      Defaults to <code>false</code> (scroll).</dd>
+      <dd>CodeMirror是否应滚动或将较长的行换行。 默认为<code>false</code>（滚动）。</dd>
 
       <dt id="option_lineNumbers"><code><strong>lineNumbers</strong>: boolean</code></dt>
-      <dd>Whether to show line numbers to the left of the editor.</dd>
+      <dd>是否在编辑器左侧显示行号。</dd>
 
       <dt id="option_firstLineNumber"><code><strong>firstLineNumber</strong>: integer</code></dt>
-      <dd>At which number to start counting lines. Default is 1.</dd>
+      <dd>代码行数计数初始值。默认为1。</dd>
 
       <dt id="option_lineNumberFormatter"><code><strong>lineNumberFormatter</strong>: function(line: integer) → string</code></dt>
-      <dd>A function used to format line numbers. The function is
-      passed the line number, and should return a string that will be
-      shown in the gutter.</dd>
+      <dd>用于格式化行号的函数。该函数传递行号，并且应返回一个字符串用以在行号区域显示。</dd>
 
       <dt id="option_gutters"><code><strong>gutters</strong>: array&lt;string&gt;</code></dt>
-      <dd>Can be used to add extra gutters (beyond or instead of the
-      line number gutter). Should be an array of CSS class names, each
-      of which defines a <code>width</code> (and optionally a
-      background), and which will be used to draw the background of
-      the gutters. <em>May</em> include
+      <dd>可以用来添加额外的侧边栏(超出或替代行号侧边栏)。 必须是CSS类名称的数组，每个名称都定义了一个<code>width(宽度)</code>(以及可选的背景)，
+        以及将用于绘制侧边栏背景。<em>May</em> include
       the <code>CodeMirror-linenumbers</code> class, in order to
       explicitly set the position of the line number gutter (it will
       default to be to the right of all other gutters). These class
