@@ -243,72 +243,52 @@
         </dl>
       </dd>
 
-      <dt id="option_lineWrapping"><code><strong>lineWrapping</strong>: boolean</code></dt>
+      <dt id="option_lineWrapping"><code><strong>lineWrapping(是否自动换行显示)</strong>: boolean</code></dt>
       <dd>CodeMirror是否应滚动或将较长的行换行。 默认为<code>false</code>（滚动）。</dd>
 
-      <dt id="option_lineNumbers"><code><strong>lineNumbers</strong>: boolean</code></dt>
+      <dt id="option_lineNumbers"><code><strong>lineNumbers(是否显示行号)</strong>: boolean</code></dt>
       <dd>是否在编辑器左侧显示行号。</dd>
 
       <dt id="option_firstLineNumber"><code><strong>firstLineNumber</strong>: integer</code></dt>
       <dd>代码行数计数初始值。默认为1。</dd>
 
-      <dt id="option_lineNumberFormatter"><code><strong>lineNumberFormatter</strong>: function(line: integer) → string</code></dt>
+      <dt id="option_lineNumberFormatter"><code><strong>lineNumberFormatter(行号格式化)</strong>: function(line: integer) → string</code></dt>
       <dd>用于格式化行号的函数。该函数传递行号，并且应返回一个字符串用以在行号区域显示。</dd>
 
       <dt id="option_gutters"><code><strong>gutters</strong>: array&lt;string&gt;</code></dt>
       <dd>可以用来添加额外的侧边栏(超出或替代行号侧边栏)。 必须是CSS类名称的数组，每个名称都定义了一个<code>width(宽度)</code>(以及可选的背景)，
-        以及将用于绘制侧边栏背景。<em>May</em> include
-      the <code>CodeMirror-linenumbers</code> class, in order to
-      explicitly set the position of the line number gutter (it will
-      default to be to the right of all other gutters). These class
-      names are the keys passed
-      to <a href="#setGutterMarker"><code>setGutterMarker</code></a>.</dd>
+        以及将用于绘制侧边栏背景。<em>可能</em>会包含<code>CodeMirror-linenumbers</code>类，
+        以便明确设置行号侧边栏的位置（它将默认位于所有其他侧边工具栏的右侧）。
+        这些类名是传递给<a href="#setGutterMarker"><code>setGutterMarker</code></a>的键。
+      </dd>
 
-      <dt id="option_fixedGutter"><code><strong>fixedGutter</strong>: boolean</code></dt>
-      <dd>Determines whether the gutter scrolls along with the content
-      horizontally (false) or whether it stays fixed during horizontal
-      scrolling (true, the default).</dd>
+      <dt id="option_fixedGutter"><code><strong>fixedGutter(钉住侧边栏)</strong>: boolean</code></dt>
+      <dd>确定侧边栏是否水平滚动（false），或水平滚动期间是否保持固定（true，默认）。</dd>
 
-      <dt id="option_scrollbarStyle"><code><strong>scrollbarStyle</strong>: string</code></dt>
-      <dd>Chooses a scrollbar implementation. The default
-      is <code>"native"</code>, showing native scrollbars. The core
-      library also provides the <code>"null"</code> style, which
-      completely hides the
-      scrollbars. <a href="#addon_simplescrollbars">Addons</a> can
-      implement additional scrollbar models.</dd>
+      <dt id="option_scrollbarStyle"><code><strong>scrollbarStyle(滚动条样式)</strong>: string</code></dt>
+      <dd>选择一个滚动条实现。默认是<code>"native"(原生)</code>，显示原生滚动条。
+        核心库也提供了<code>"null"</code>样式，这将完全隐藏滚动条。
+        <a href="#addon_simplescrollbars">Addons(插件)</a>可以实现额外的滚动条模型。
+      </dd>
 
       <dt id="option_coverGutterNextToScrollbar"><code><strong>coverGutterNextToScrollbar</strong>: boolean</code></dt>
-      <dd>When <a href="#option_fixedGutter"><code>fixedGutter</code></a>
-      is on, and there is a horizontal scrollbar, by default the
-      gutter will be visible to the left of this scrollbar. If this
-      option is set to true, it will be covered by an element with
-      class <code>CodeMirror-gutter-filler</code>.</dd>
+      <dd>当<a href="#option_fixedGutter"><code>fixedGutter</code></a>处于打开状态时，并且存在水平滚动条时，默认情况下，该滚动条的左侧将显示侧边栏。
+        如果此选项设置为true，则它将由具有<code>CodeMirror-gutter-filler</code>类的元素覆盖。</dd>
 
       <dt id="option_inputStyle"><code><strong>inputStyle</strong>: string</code></dt>
-      <dd>Selects the way CodeMirror handles input and focus. The core
-      library defines the <code>"textarea"</code>
-      and <code>"contenteditable"</code> input models. On mobile
-      browsers, the default is <code>"contenteditable"</code>. On
-      desktop browsers, the default is <code>"textarea"</code>.
-      Support for IME and screen readers is better in
-      the <code>"contenteditable"</code> model. The intention is to
-      make it the default on modern desktop browsers in the
-      future.</dd>
+      <dd>选择CodeMirror处理输入和焦点的方式。 核心库定义了<code>"textarea"</code>和<code>"contenteditable"</code>输入模型。
+        在移动浏览器上，默认值为<code>"contenteditable"</code>。 在桌面浏览器上，默认是<code>"textarea"</code>。
+        在<code>"contenteditable"</code>模式中，对IME和屏幕阅读器的支持更好。目的是使其成为未来现代桌面浏览器的默认设置。</dd>
 
-      <dt id="option_readOnly"><code><strong>readOnly</strong>: boolean|string</code></dt>
-      <dd>This disables editing of the editor content by the user. If
-      the special value <code>"nocursor"</code> is given (instead of
-      simply <code>true</code>), focusing of the editor is also
-      disallowed.</dd>
+      <dt id="option_readOnly"><code><strong>readOnly(只读)</strong>: boolean|string</code></dt>
+      <dd>这将会禁止用户编辑编辑器的内容。如果给出特殊值<code>"nocursor"</code>(而不是简单的<code>true</code>)
+        那么编辑器的焦点也会被禁止。</dd>
 
-      <dt id="option_showCursorWhenSelecting"><code><strong>showCursorWhenSelecting</strong>: boolean</code></dt>
-      <dd>Whether the cursor should be drawn when a selection is
-      active. Defaults to false.</dd>
+      <dt id="option_showCursorWhenSelecting"><code><strong>showCursorWhenSelecting(选中时显示光标)</strong>: boolean</code></dt>
+      <dd>当处于选择模式时是否应该绘制光标。默认是false。</dd>
 
       <dt id="option_lineWiseCopyCut"><code><strong>lineWiseCopyCut</strong>: boolean</code></dt>
-      <dd>When enabled, which is the default, doing copy or cut when
-      there is no selection will copy or cut the whole lines that have
-      cursors on them.</dd>
+      <dd>当此选项激活后，默认的，当没有选择内容时，若进行复制或剪切，将会复制或剪切光标所在位置的一整行。</dd>
 
       <dt id="option_pasteLinesPerSelection"><code><strong>pasteLinesPerSelection</strong>: boolean</code></dt>
       <dd>When pasting something from an external source (not from the
@@ -429,7 +409,7 @@
 </section>
 
 <section id=events>
-    <h2>Events</h2>
+    <h2>Events(事件)</h2>
 
     <p>Various CodeMirror-related objects emit events, which allow
     client code to react to various situations. Handlers for such
@@ -692,7 +672,7 @@
 </section>
 
 <section id=keymaps>
-    <h2>Key Maps</h2>
+    <h2>Key Maps(按键映射)</h2>
 
     <p>Key maps are ways to associate keys and mouse buttons with
     functionality. A key map is an object mapping strings that
@@ -789,7 +769,7 @@ editor.setOption("extraKeys", {
 </section>
 
 <section id=commands>
-    <h2>Commands</h2>
+    <h2>Commands(操作命令)</h2>
 
     <p>Commands are parameter-less actions that can be performed on an
     editor. Their main use is for key bindings. Commands are defined by
@@ -988,7 +968,7 @@ editor.setOption("extraKeys", {
 </section>
 
 <section id=styling>
-    <h2>Customized Styling</h2>
+    <h2>Customized Styling(自定义样式)</h2>
 
     <p>Up to a certain extent, CodeMirror's look can be changed by
     modifying style sheet files. The style sheets supplied by modes
@@ -1065,7 +1045,7 @@ editor.setOption("extraKeys", {
 </section>
 
 <section id=api>
-    <h2>Programming API</h2>
+    <h2>Programming API(编程API)</h2>
 
     <p>A lot of CodeMirror features are only available through its
     API. Thus, you need to write code (or
@@ -2140,7 +2120,7 @@ editor.setOption("extraKeys", {
 </section>
 
 <section id=addons>
-    <h2 id="addons">Addons</h2>
+    <h2 id="addonsH2">Addons(插件)</h2>
 
     <p>The <code>addon</code> directory in the distribution contains a
     number of reusable components that implement extra editor
@@ -3022,7 +3002,7 @@ editor.setOption("extraKeys", {
 </section>
 
 <section id=modeapi>
-    <h2>Writing CodeMirror Modes</h2>
+    <h2>Writing CodeMirror Modes(编写CodeMirror模式)</h2>
 
     <p>Modes typically consist of a single JavaScript file. This file
     defines, in the simplest case, a lexer (tokenizer) for your
@@ -3302,7 +3282,7 @@ editor.setOption("extraKeys", {
 </section>
 
 <section id="vimapi">
-    <h2>VIM Mode API</h2>
+    <h2>VIM Mode API(VIM模式API)</h2>
 
     <p>CodeMirror has a robust VIM mode that attempts to faithfully
     emulate VIM's most useful features. It can be enabled by
