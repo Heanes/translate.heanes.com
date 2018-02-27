@@ -287,39 +287,27 @@
       <dt id="option_showCursorWhenSelecting"><code><strong>showCursorWhenSelecting(选中时显示光标)</strong>: boolean</code></dt>
       <dd>当处于选择模式时是否应该绘制光标。默认是false。</dd>
 
-      <dt id="option_lineWiseCopyCut"><code><strong>lineWiseCopyCut</strong>: boolean</code></dt>
+      <dt id="option_lineWiseCopyCut"><code><strong>lineWiseCopyCut(整行复制或剪切)</strong>: boolean</code></dt>
       <dd>当此选项激活后，默认的，当没有选择内容时，若进行复制或剪切，将会复制或剪切光标所在位置的一整行。</dd>
 
       <dt id="option_pasteLinesPerSelection"><code><strong>pasteLinesPerSelection</strong>: boolean</code></dt>
-      <dd>When pasting something from an external source (not from the
-      editor itself), if the number of lines matches the number of
-      selection, CodeMirror will by default insert one line per
-      selection. You can set this to <code>false</code> to disable
-      that behavior.</dd>
+      <dd>当从外部源粘贴数据时(而不是来自编辑器本身)，如果行数与选择的数量匹配，CodeMirror将默认为每个选择插入一行。
+        您可以将其设置为<code>false</code>以禁用该行为</dd>
 
-      <dt id="option_undoDepth"><code><strong>undoDepth</strong>: integer</code></dt>
-      <dd>The maximum number of undo levels that the editor stores.
-      Note that this includes selection change events. Defaults to
-      200.</dd>
+      <dt id="option_undoDepth"><code><strong>undoDepth(撤销次数)</strong>: integer</code></dt>
+      <dd>编辑器存储的撤销级别的最大数量。请注意，这包括选择更改事件。默认为200.</dd>
 
-      <dt id="option_historyEventDelay"><code><strong>historyEventDelay</strong>: integer</code></dt>
-      <dd>The period of inactivity (in milliseconds) that will cause a
-      new history event to be started when typing or deleting.
-      Defaults to 1250.</dd>
+      <dt id="option_historyEventDelay"><code><strong>historyEventDelay(保存历史延迟)</strong>: integer</code></dt>
+      <dd>不活动时间（以毫秒为单位）将导致在键入或删除时启动新的历史记录事件。 默认为1250。</dd>
 
       <dt id="option_tabindex"><code><strong>tabindex</strong>: integer</code></dt>
-      <dd>The <a href="http://www.w3.org/TR/html401/interact/forms.html#adef-tabindex">tab
-      index</a> to assign to the editor. If not given, no tab index
-      will be assigned.</dd>
+      <dd>要分配给编辑器的<a href="http://www.w3.org/TR/html401/interact/forms.html#adef-tabindex">tab index(选项卡索引)</a>。 如果没有给出，则不会分配标签索引。</dd>
 
-      <dt id="option_autofocus"><code><strong>autofocus</strong>: boolean</code></dt>
-      <dd>Can be used to make CodeMirror focus itself on
-      initialization. Defaults to off.
-      When <a href="#fromTextArea"><code>fromTextArea</code></a> is
-      used, and no explicit value is given for this option, it will be
-      set to true when either the source textarea is focused, or it
-      has an <code>autofocus</code> attribute and no other element is
-      focused.</dd>
+      <dt id="option_autofocus"><code><strong>autofocus(自动聚焦)</strong>: boolean</code></dt>
+      <dd>可以用来在CodeMirror初始化时就获得自身焦点。默认为关闭。
+        如果使用<a href="#fromTextArea"><code>fromTextArea</code></a>，并且此选项没有给出明确的值，
+        则当源textarea文本域被聚焦时，它将被设置为true，或者它具有<code>autofocus(自动聚焦)</code>属性并且没有其他元素被聚焦。
+      </dd>
     </dl>
 
     <p>Below this a few more specialized, low-level options are
