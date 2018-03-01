@@ -310,89 +310,61 @@
       </dd>
     </dl>
 
-    <p>Below this a few more specialized, low-level options are
-    listed. These are only useful in very specific situations, you
-    might want to skip them the first time you read this manual.</p>
+    <p>下面列出了一些更专业化的低级选项。 这些仅在非常特定的情况下有用，您可能想在第一次阅读本手册时跳过它们。</p>
 
     <dl>
-      <dt id="option_dragDrop"><code><strong>dragDrop</strong>: boolean</code></dt>
-      <dd>Controls whether drag-and-drop is enabled. On by default.</dd>
+      <dt id="option_dragDrop"><code><strong>dragDrop(拖放)</strong>: boolean</code></dt>
+      <dd>控制是否启用拖放功能。 默认开启。</dd>
 
-      <dt id="option_allowDropFileTypes"><code><strong>allowDropFileTypes</strong>: array&lt;string&gt;</code></dt>
-      <dd>When set (default is <code>null</code>) only files whose
-      type is in the array can be dropped into the editor. The strings
-      should be MIME types, and will be checked against
-      the <a href="https://w3c.github.io/FileAPI/#dfn-type"><code>type</code></a>
-      of the <code>File</code> object as reported by the browser.</dd>
+      <dt id="option_allowDropFileTypes"><code><strong>allowDropFileTypes(允许拖放的文件类型)</strong>: array&lt;string&gt;</code></dt>
+      <dd>设置时（默认为<code>null(空)</code>），只有类型在数组中的文件才能被放入编辑器。
+        这些字符串应该是MIME类型，并且将根据浏览器识别的<code>File</code>对象的<a href="https://w3c.github.io/FileAPI/#dfn-type"><code>type(类型)</code></a>进行检查。</dd>
 
-      <dt id="option_cursorBlinkRate"><code><strong>cursorBlinkRate</strong>: number</code></dt>
-      <dd>Half-period in milliseconds used for cursor blinking. The default blink
-      rate is 530ms. By setting this to zero, blinking can be disabled. A
-      negative value hides the cursor entirely.</dd>
+      <dt id="option_cursorBlinkRate"><code><strong>cursorBlinkRate(光标闪烁频率)</strong>: number</code></dt>
+      <dd>设置光标闪烁的半个周期时间（以毫秒为单位）。默认的闪烁率为530ms。 通过将其设置为零，可以禁用闪烁。 负值将完全隐藏光标。</dd>
 
       <dt id="option_cursorScrollMargin"><code><strong>cursorScrollMargin</strong>: number</code></dt>
-      <dd>How much extra space to always keep above and below the
-      cursor when approaching the top or bottom of the visible view in
-      a scrollable document. Default is 0.</dd>
+      <dd>当在可滚动文档中接近可见视图的顶部或底部时，总是保持光标上方和下方多少额外空间。 缺省值是0。</dd>
 
-      <dt id="option_cursorHeight"><code><strong>cursorHeight</strong>: number</code></dt>
-      <dd>Determines the height of the cursor. Default is 1, meaning
-      it spans the whole height of the line. For some fonts (and by
-      some tastes) a smaller height (for example <code>0.85</code>),
-      which causes the cursor to not reach all the way to the bottom
-      of the line, looks better</dd>
+      <dt id="option_cursorHeight"><code><strong>cursorHeight(光标高度)</strong>: number</code></dt>
+      <dd>确定光标的高度。默认是1，以为着它跨越线条的整个高度。
+        对于某些字体（以及某些品味）而言，较小的高度（例如<code>0.85</code>）会导致光标无法一直到达底部，看起来更好
+      </dd>
 
-      <dt id="option_resetSelectionOnContextMenu"><code><strong>resetSelectionOnContextMenu</strong>: boolean</code></dt>
-      <dd>Controls whether, when the context menu is opened with a
-      click outside of the current selection, the cursor is moved to
-      the point of the click. Defaults to <code>true</code>.</dd>
+      <dt id="option_resetSelectionOnContextMenu"><code><strong>resetSelectionOnContextMenu(单击时重置选择)</strong>: boolean</code></dt>
+      <dd>控制当在当前选择之外单击打开上下文菜单时，光标移至点击点。 默认为<code>true</code>。</dd>
 
       <dt id="option_workTime"><code id="option_wordkDelay"><strong>workTime</strong>, <strong>workDelay</strong>: number</code></dt>
-      <dd>Highlighting is done by a pseudo background-thread that will
-      work for <code>workTime</code> milliseconds, and then use
-      timeout to sleep for <code>workDelay</code> milliseconds. The
-      defaults are 200 and 300, you can change these options to make
-      the highlighting more or less aggressive.</dd>
+      <dd>
+        高亮代码显示是通过一个<code>workTime(工作时间)</code>为毫秒的伪背景线程完成的，然后使用超时为<code>workDelay</code>毫秒休眠。
+        默认值是200和300，你可以更改这些选项以使高亮功能具有更多或更少的的工作频率。
+      </dd>
 
-      <dt id="option_pollInterval"><code><strong>pollInterval</strong>: number</code></dt>
-      <dd>Indicates how quickly CodeMirror should poll its input
-      textarea for changes (when focused). Most input is captured by
-      events, but some things, like IME input on some browsers, don't
-      generate events that allow CodeMirror to properly detect it.
-      Thus, it polls. Default is 100 milliseconds.</dd>
+      <dt id="option_pollInterval"><code><strong>pollInterval(定时轮询间隔)</strong>: number</code></dt>
+      <dd>指示CodeMirror应该多快地轮询其输入textarea以进行更改（何时关注）。
+        大部分输入都是由事件捕获的，但某些事件（如某些浏览器上的IME输入）不会生成允许CodeMirror正确检测它的事件。
+        因此，它定时轮询。 默认值是100毫秒。
+      </dd>
 
       <dt id="option_flattenSpans"><code><strong>flattenSpans</strong>: boolean</code></dt>
-      <dd>By default, CodeMirror will combine adjacent tokens into a
-      single span if they have the same class. This will result in a
-      simpler DOM tree, and thus perform better. With some kinds of
-      styling (such as rounded corners), this will change the way the
-      document looks. You can set this option to false to disable this
-      behavior.</dd>
+      <dd>默认情况下，如果CodeMirror具有相同的类，则会将相邻的令牌合并为一个内联容器。
+        这将得到更简单的DOM树，从而表现更好。 带着某些样式（如圆角），这将改变文档的外观。
+        您可以将此选项设置为false以禁用此行为。
+      </dd>
 
       <dt id="option_addModeClass"><code><strong>addModeClass</strong>: boolean</code></dt>
-      <dd>When enabled (off by default), an extra CSS class will be
-      added to each token, indicating the
-      (<a href="#innerMode">inner</a>) mode that produced it, prefixed
-      with <code>"cm-m-"</code>. For example, tokens from the XML mode
-      will get the <code>cm-m-xml</code> class.</dd>
+      <dd>如果启用（默认为关闭），则会为每个标记添加一个额外的CSS类，指示生成它的(<a href="#innerMode">inner(内部)</a>)模式，以<code>"cm-m-"</code>为前缀。
+        例如，来自XML模式的标记将获得<code>cm-m-xml</code>类。
+      </dd>
 
-      <dt id="option_maxHighlightLength"><code><strong>maxHighlightLength</strong>: number</code></dt>
-      <dd>When highlighting long lines, in order to stay responsive,
-      the editor will give up and simply style the rest of the line as
-      plain text when it reaches a certain position. The default is
-      10 000. You can set this to <code>Infinity</code> to turn off
-      this behavior.</dd>
+      <dt id="option_maxHighlightLength"><code><strong>maxHighlightLength(最长高亮字符个数)</strong>: number</code></dt>
+      <dd>当高亮显示较长的行时，为了保持响应，编辑器将放弃高亮，并在其到达某个位置时简单地将该行的其余部分设置为纯文本。
+        默认值是10 000.您可以将其设置为<code>Infinity(无限)</code>以关闭此行为。</dd>
 
       <dt id="option_viewportMargin"><code><strong>viewportMargin</strong>: integer</code></dt>
-      <dd>Specifies the amount of lines that are rendered above and
-      below the part of the document that's currently scrolled into
-      view. This affects the amount of updates needed when scrolling,
-      and the amount of work that such an update does. You should
-      usually leave it at its default, 10. Can be set
-      to <code>Infinity</code> to make sure the whole document is
-      always rendered, and thus the browser's text search works on it.
-      This <em>will</em> have bad effects on performance of big
-      documents.</dd>
+      <dd>指定当前滚动到视图中的文档部分上方和下方呈现的行数。 这会影响滚动时所需的更新量以及此类更新所做的工作量。您通常应该将其保留为默认值10。
+        可以将其设置为<code>Infinity(无限)</code>，以确保始终呈现整个文档，从而使浏览器的文本搜索功能可以正常工作。这<em>会</em>对大文档的性能造成不良影响。
+      </dd>
     </dl>
 </section>
 
