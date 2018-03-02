@@ -371,85 +371,47 @@
 <section id=events>
     <h2>Events(事件)</h2>
 
-    <p>Various CodeMirror-related objects emit events, which allow
-    client code to react to various situations. Handlers for such
-    events can be registered with the <a href="#on"><code>on</code></a>
-    and <a href="#off"><code>off</code></a> methods on the objects
-    that the event fires on. To fire your own events,
-    use <code>CodeMirror.signal(target, name, args...)</code>,
-    where <code>target</code> is a non-DOM-node object.</p>
+    <p>各种与CodeMirror相关的对象发出事件，这些事件允许客户端代码响应各种情况。
+      这些事件的处理程序可以通过事件触发对象的<a href="#on"><code>on</code></a>和<a href="#off"><code>off</code></a>方法进行注册。
+      要触发自己的事件，请使用<code>CodeMirror.signal(target, name, args...)</code>，其中<code>target</code>是非DOM节点对象。</p>
 
-    <p>An editor instance fires the following events.
-    The <code>instance</code> argument always refers to the editor
-    itself.</p>
+    <p>每个编辑器实例都会触发以下事件。<code>instance(实例)</code>参数总是指编辑器本身。</p>
 
     <dl>
       <dt id="event_change"><code><strong>"change"</strong> (instance: CodeMirror, changeObj: object)</code></dt>
-      <dd>Fires every time the content of the editor is changed.
-      The <code>changeObj</code> is a <code>{from, to, text, removed,
-      origin}</code> object containing information about the changes
-      that occurred as second argument. <code>from</code>
-      and <code>to</code> are the positions (in the pre-change
-      coordinate system) where the change started and ended (for
-      example, it might be <code>{ch:0, line:18}</code> if the
-      position is at the beginning of line #19). <code>text</code> is
-      an array of strings representing the text that replaced the
-      changed range (split by line). <code>removed</code> is the text
-      that used to be between <code>from</code> and <code>to</code>,
-      which is overwritten by this change. This event is
-      fired <em>before</em> the end of
-      an <a href="#operation">operation</a>, before the DOM updates
-      happen.</dd>
+      <dd>每当编辑器的内容发生改变时触发此事件。<code>changeObj</code>是一个<code>{from, to, text, removed, origin}</code>对象，其中包含发生的更改的有关信息，来作为第二个参数。
+        <code>from</code>和<code>to</code>是变化开始和结束(例如，如果位置在第#16行行首处的位置，它将会是<code>{ch:0, line:18}</code>)的位置(在变化前的坐标系统中)。
+        <code>text</code>是一个字符串数组，代表替换已更改范围的文本（按行分割）。
+        <code>removed</code>是变化之前介于<code>from</code>和<code>to</code>之间的文本，这些文本被此更改覆盖。
+        在DOM更新发生<em>之前</em>，此事件会在<a href="#operation">operation(操作)</a>结束之前触发。
+      </dd>
 
       <dt id="event_changes"><code><strong>"changes"</strong> (instance: CodeMirror, changes: array&lt;object&gt;)</code></dt>
-      <dd>Like the <a href="#event_change"><code>"change"</code></a>
-      event, but batched per <a href="#operation">operation</a>,
-      passing an array containing all the changes that happened in the
-      operation. This event is fired after the operation finished, and
-      display changes it makes will trigger a new operation.</dd>
+      <dd>类似于<a href="#event_change"><code>"change"</code></a>事件，但是每个<a href="#operation">operation(操作)</a>都进行批量处理，传递在操作中发生的所有更改的数组。
+        此事件在操作完成之后，并且显示的更改会触发新的操作。
+      </dd>
 
       <dt id="event_beforeChange"><code><strong>"beforeChange"</strong> (instance: CodeMirror, changeObj: object)</code></dt>
-      <dd>This event is fired before a change is applied, and its
-      handler may choose to modify or cancel the change.
-      The <code>changeObj</code> object
-      has <code>from</code>, <code>to</code>, and <code>text</code>
-      properties, as with
-      the <a href="#event_change"><code>"change"</code></a> event. It
-      also has a <code>cancel()</code> method, which can be called to
-      cancel the change, and, <strong>if</strong> the change isn't
-      coming from an undo or redo event, an <code>update(from, to,
-      text)</code> method, which may be used to modify the change.
-      Undo or redo changes can't be modified, because they hold some
-      metainformation for restoring old marked ranges that is only
-      valid for that specific change. All three arguments
-      to <code>update</code> are optional, and can be left off to
-      leave the existing value for that field
-      intact. <strong>Note:</strong> you may not do anything from
-      a <code>"beforeChange"</code> handler that would cause changes
-      to the document or its visualization. Doing so will, since this
-      handler is called directly from the bowels of the CodeMirror
-      implementation, probably cause the editor to become
-      corrupted.</dd>
+      <dd>事件在更改被应用之前触发，其处理程序可能会选择修改或取消更改。
+        <code>changeObj</code>对象包含<code>from</code>, <code>to</code>, 和 <code>text</code>属性，就像<a href="#event_change"><code>"change"</code></a>事件一样。
+        它还有一个<code>cancel()</code>方法，可以调用该方法来取消更改，<strong>如果</strong>更改不是来自撤消或重做事件，还可以使用<code>update(from, to, text)</code>方法，该方法可用于修改更改。
+        撤销和重做更改不能被修改，因为它们包含一些元信息，用于恢复仅对特定更改有效的旧标记范围。
+        所有要<code>update</code>的三个参数都是可选的，并且可以保持不变以保持该字段的现有值不变。
+        <strong>注意：</strong>你不能执行任何可能导致文档或其可视化更改的<code>"beforeChange"</code>处理程序。
+        如果这样做了，因为这个处理程序直接从CodeMirror实现的底层调用，则可能会导致编辑器损坏。
+      </dd>
 
       <dt id="event_cursorActivity"><code><strong>"cursorActivity"</strong> (instance: CodeMirror)</code></dt>
-      <dd>Will be fired when the cursor or selection moves, or any
-      change is made to the editor content.</dd>
+      <dd>当光标在改变选择内容，或在编辑器内容发生任何更改时，会出发此事件。</dd>
 
       <dt id="event_keyHandled"><code><strong>"keyHandled"</strong> (instance: CodeMirror, name: string, event: Event)</code></dt>
-      <dd>Fired after a key is handled through a
-      key map. <code>name</code> is the name of the handled key (for
-      example <code>"Ctrl-X"</code> or <code>"'q'"</code>),
-      and <code>event</code> is the DOM <code>keydown</code>
-      or <code>keypress</code> event.</dd>
+      <dd>通过密钥映射处理密钥后触发。 <code>name</code>是所处理的键的名称（例如<code>"Ctrl-X"</code>或<code>"'q'"</code>），<code>事件</code>是DOM <code>keydown</code>或<code>keypress</code>事件。</dd>
 
       <dt id="event_inputRead"><code><strong>"inputRead"</strong> (instance: CodeMirror, changeObj: object)</code></dt>
-      <dd>Fired whenever new input is read from the hidden textarea
-      (typed or pasted by the user).</dd>
+      <dd>每当从隐藏的textarea中读取新输入（由用户键入或粘贴）时触发。</dd>
 
       <dt id="event_electricInput"><code><strong>"electricInput"</strong> (instance: CodeMirror, line: integer)</code></dt>
-      <dd>Fired if text input matched the
-      mode's <a href="#option_electricChars">electric</a> patterns,
-      and this caused the line's indentation to change.</dd>
+      <dd>如果文本输入与模式的<a href="#option_electricChars">electric</a>模式相匹配，这会导致线条的缩进改变。</dd>
 
       <dt id="event_beforeSelectionChange"><code><strong>"beforeSelectionChange"</strong> (instance: CodeMirror, obj: {ranges, origin, update})</code></dt>
       <dd>This event is fired before the selection is moved. Its
