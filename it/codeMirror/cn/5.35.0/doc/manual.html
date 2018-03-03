@@ -413,83 +413,62 @@
       <dt id="event_electricInput"><code><strong>"electricInput"</strong> (instance: CodeMirror, line: integer)</code></dt>
       <dd>如果文本输入与模式的<a href="#option_electricChars">electric</a>模式相匹配，这会导致线条的缩进改变。</dd>
 
-      <dt id="event_beforeSelectionChange"><code><strong>"beforeSelectionChange"</strong> (instance: CodeMirror, obj: {ranges, origin, update})</code></dt>
-      <dd>This event is fired before the selection is moved. Its
-      handler may inspect the set of selection ranges, present as an
-      array of <code>{anchor, head}</code> objects in
-      the <code>ranges</code> property of the <code>obj</code>
-      argument, and optionally change them by calling
-      the <code>update</code> method on this object, passing an array
-      of ranges in the same format. The object also contains
-      an <code>origin</code> property holding the origin string passed
-      to the selection-changing method, if any. Handlers for this
-      event have the same restriction
-      as <a href="#event_beforeChange"><code>"beforeChange"</code></a>
-      handlers — they should not do anything to directly update the
-      state of the editor.</dd>
+      <dt id="event_beforeSelectionChange"><code><strong>"beforeSelectionChange"(改变选区之前)</strong> (instance: CodeMirror, obj: {ranges, origin, update})</code></dt>
+      <dd>此事件在选择移动之前被触发。它的处理程序可以检查一组选择范围，在obj参数的<code>ranges</code>属性中以<code>{anchor, head}</code>对象的数组形式出现，
+        并且可以通过调用此对象的<code>update</code>方法来更改它们，在该对象中传递一个范围数组相同的格式。
+        该对象还包含一个<code>origin</code>属性，用于保存传递给选择更改方法的原始字符串（如果有）。
+        此事件的处理程序与<a href="#event_beforeChange"><code>"beforeChange"</code></a>处理程序具有相同的限制 - 它们不应该直接更新编辑器的状态。
+      </dd>
 
-      <dt id="event_viewportChange"><code><strong>"viewportChange"</strong> (instance: CodeMirror, from: number, to: number)</code></dt>
-      <dd>Fires whenever the <a href="#getViewport">view port</a> of
-      the editor changes (due to scrolling, editing, or any other
-      factor). The <code>from</code> and <code>to</code> arguments
-      give the new start and end of the viewport.</dd>
+      <dt id="event_viewportChange"><code><strong>"viewportChange"(可视区域改变)</strong> (instance: CodeMirror, from: number, to: number)</code></dt>
+      <dd>每当编辑器可视区域发生变化（由于滚动，编辑或任何其他因素）时触发。
+        <code>from</code> 和 <code>to</code>参数赋予可视区域新的开始和结束。
+      </dd>
 
       <dt id="event_swapDoc"><code><strong>"swapDoc"</strong> (instance: CodeMirror, oldDoc: Doc)</code></dt>
-      <dd>This is signalled when the editor's document is replaced
-      using the <a href="#swapDoc"><code>swapDoc</code></a>
-      method.</dd>
+      <dd>当使用<a href="#swapDoc"><code>swapDoc</code></a>方法替换编辑器的文档时，就会触发该信号。</dd>
 
       <dt id="event_gutterClick"><code><strong>"gutterClick"</strong> (instance: CodeMirror, line: integer, gutter: string, clickEvent: Event)</code></dt>
-      <dd>Fires when the editor gutter (the line-number area) is
-      clicked. Will pass the editor instance as first argument, the
-      (zero-based) number of the line that was clicked as second
-      argument, the CSS class of the gutter that was clicked as third
-      argument, and the raw <code>mousedown</code> event object as
-      fourth argument.</dd>
+      <dd>当单击编辑器工具栏（行号区域）时触发。将会传递以编辑器实例作为第一个参数，单击的行号(从0开始)作为第二个参数，单击的工具栏的CSS类作为第三个参数，
+        以及原始的<code>mousedown</code>事件对象作为第四个参数的四个参数。
+      </dd>
 
       <dt id="event_gutterContextMenu"><code><strong>"gutterContextMenu"</strong> (instance: CodeMirror, line: integer, gutter: string, contextMenu: Event: Event)</code></dt>
-      <dd>Fires when the editor gutter (the line-number area)
-      receives a <code>contextmenu</code> event. Will pass the editor
-      instance as first argument, the (zero-based) number of the line
-      that was clicked as second argument, the CSS class of the
-      gutter that was clicked as third argument, and the raw
-      <code>contextmenu</code> mouse event object as fourth argument.
-      You can <code>preventDefault</code> the event, to signal that
-      CodeMirror should do no further handling.</dd>
+      <dd>当编辑器工具栏（行号区域）接收到<code>contextmenu</code>事件时触发。
+        将会传递以编辑器实例作为第一个参数，单击的行号(从0开始)作为第二个参数，单击的工具栏的CSS类作为第三个参数，
+        以及原始的<code>contextmenu</code>鼠标事件对象作为第四个参数的四个参数。
+        你可以<code>preventDefault(阻止默认)</code>事件，来表示codeMirror将不会做进一步处理。
+       </dd>
 
       <dt id="event_focus"><code><strong>"focus"</strong> (instance: CodeMirror, event: Event)</code></dt>
-      <dd>Fires whenever the editor is focused.</dd>
+      <dd>当编辑器被聚焦时触发。</dd>
 
       <dt id="event_blur"><code><strong>"blur"</strong> (instance: CodeMirror, event: Event)</code></dt>
-      <dd>Fires whenever the editor is unfocused.</dd>
+      <dd>当编辑器失去焦点时触发。</dd>
 
       <dt id="event_scroll"><code><strong>"scroll"</strong> (instance: CodeMirror)</code></dt>
-      <dd>Fires when the editor is scrolled.</dd>
+      <dd>当编辑器滚动时触发。</dd>
 
       <dt id="event_refresh"><code><strong>"refresh"</strong> (instance: CodeMirror)</code></dt>
-      <dd>Fires when the editor is <a href="#refresh">refreshed</a>
-      or <a href="#setSize">resized</a>. Mostly useful to invalidate
-      cached values that depend on the editor or character size.</dd>
+      <dd>当编辑器被<a href="#refresh">refreshed(刷新)</a>或者<a href="#setSize">resized(调整大小)</a>时触发。
+        当使依赖于编辑器或字符大小的缓存值失效时很有用。
+      </dd>
 
       <dt id="event_optionChange"><code><strong>"optionChange"</strong> (instance: CodeMirror, option: string)</code></dt>
-      <dd>Dispatched every time an option is changed with <a href="#setOption"><code>setOption</code></a>.</dd>
+      <dd>每次使用<a href="#setOption"><code>setOption</code></a>更改选项时触发。</dd>
 
       <dt id="event_scrollCursorIntoView"><code><strong>"scrollCursorIntoView"</strong> (instance: CodeMirror, event: Event)</code></dt>
-      <dd>Fires when the editor tries to scroll its cursor into view.
-      Can be hooked into to take care of additional scrollable
-      containers around the editor. When the event object has
-      its <code>preventDefault</code> method called, CodeMirror will
-      not itself try to scroll the window.</dd>
+      <dd>当编辑器尝试将其光标滚动到视图时触发。可以连接到编辑器周围的其他可滚动容器。
+        当事件对象调用了<code>preventDefault</code>方法时，CodeMirror本身不会尝试滚动窗口。
+      </dd>
 
       <dt id="event_update"><code><strong>"update"</strong> (instance: CodeMirror)</code></dt>
-      <dd>Will be fired whenever CodeMirror updates its DOM display.</dd>
+      <dd>每当CodeMirror更新了其DOM展示时触发。</dd>
 
       <dt id="event_renderLine"><code><strong>"renderLine"</strong> (instance: CodeMirror, line: LineHandle, element: Element)</code></dt>
-      <dd>Fired whenever a line is (re-)rendered to the DOM. Fired
-      right after the DOM element is built, <em>before</em> it is
-      added to the document. The handler may mess with the style of
-      the resulting element, or add event handlers, but
-      should <em>not</em> try to change the state of the editor.</dd>
+      <dd>每当一条线（重新）呈现给DOM时触发。在添加到文档<em>之前</em>，在构建DOM元素之后立即触发。
+        该处理程序可能会混淆结果元素的样式，或添加事件处理程序，但<em>不</em>应尝试更改编辑器的状态。
+      </dd>
 
       <dt id="event_dom"><code><strong>"mousedown"</strong>,
       <strong>"dblclick"</strong>, <strong>"touchstart"</strong>, <strong>"contextmenu"</strong>,
@@ -499,10 +478,9 @@
       <strong>"dragover"</strong>, <strong>"dragleave"</strong>,
       <strong>"drop"</strong>
       (instance: CodeMirror, event: Event)</code></dt>
-      <dd>Fired when CodeMirror is handling a DOM event of this type.
-      You can <code>preventDefault</code> the event, or give it a
-      truthy <code>codemirrorIgnore</code> property, to signal that
-      CodeMirror should do no further handling.</dd>
+      <dd>CodeMirror处理此类型的DOM事件时触发。
+        您可以<code>preventDefault(阻止默认)</code>事件，或为其指定一个真实的<code>codemirrorIgnore</code>属性，以指示CodeMirror应该不做进一步处理。
+      </dd>
     </dl>
 
     <p>Document objects (instances
