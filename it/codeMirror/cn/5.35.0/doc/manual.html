@@ -483,91 +483,64 @@
       </dd>
     </dl>
 
-    <p>Document objects (instances
-    of <a href="#Doc"><code>CodeMirror.Doc</code></a>) emit the
-    following events:</p>
+    <p>文档对象（<a href="#Doc"><code>CodeMirror.Doc</code></a>的实例）产生以下事件：</p>
 
     <dl>
       <dt id="event_doc_change"><code><strong>"change"</strong> (doc: CodeMirror.Doc, changeObj: object)</code></dt>
-      <dd>Fired whenever a change occurs to the
-      document. <code>changeObj</code> has a similar type as the
-      object passed to the
-      editor's <a href="#event_change"><code>"change"</code></a>
-      event.</dd>
+      <dd>每当文档发生变更时触发。 <code>changeObj</code>与传递给编辑器的<a href="#event_change"><code>"change"</code></a>事件的对象具有类似的类型。</dd>
 
       <dt id="event_doc_beforeChange"><code><strong>"beforeChange"</strong> (doc: CodeMirror.Doc, change: object)</code></dt>
-      <dd>See the <a href="#event_beforeChange">description of the
-      same event</a> on editor instances.</dd>
+      <dd>请参阅编辑器实例上<a href="#event_beforeChange">相同事件的描述。</a></dd>
 
       <dt id="event_doc_cursorActivity"><code><strong>"cursorActivity"</strong> (doc: CodeMirror.Doc)</code></dt>
-      <dd>Fired whenever the cursor or selection in this document
-      changes.</dd>
+      <dd>本文档中的光标或选择发生更改时触发。</dd>
 
       <dt id="event_doc_beforeSelectionChange"><code><strong>"beforeSelectionChange"</strong> (doc: CodeMirror.Doc, selection: {head, anchor})</code></dt>
-      <dd>Equivalent to
-      the <a href="#event_beforeSelectionChange">event by the same
-      name</a> as fired on editor instances.</dd>
+      <dd>相当于在编辑器实例上触发的<a href="#event_beforeSelectionChange">同名事件</a>。</dd>
     </dl>
 
-    <p>Line handles (as returned by, for
-    example, <a href="#getLineHandle"><code>getLineHandle</code></a>)
-    support these events:</p>
+    <p>行处理（如由<a href="#getLineHandle"><code>getLineHandle</code></a>返回）支持这些事件：</p>
 
     <dl>
       <dt id="event_delete"><code><strong>"delete"</strong> ()</code></dt>
-      <dd>Will be fired when the line object is deleted. A line object
-      is associated with the <em>start</em> of the line. Mostly useful
-      when you need to find out when your <a href="#setGutterMarker">gutter
-      markers</a> on a given line are removed.</dd>
+      <dd>行对象被删除时将被触发。一个行对象与行的<em>起始</em>位置相关联。
+        当你需要查明给定的某行上的<a href="#setGutterMarker">gutter markers(工具栏标记)</a>何时被移除是非常有用。
+      </dd>
       <dt id="event_line_change"><code><strong>"change"</strong> (line: LineHandle, changeObj: object)</code></dt>
-      <dd>Fires when the line's text content is changed in any way
-      (but the line is not deleted outright). The <code>change</code>
-      object is similar to the one passed
-      to <a href="#event_change">change event</a> on the editor
-      object.</dd>
+      <dd>以任何方式<code>更改</code>行的文本内容时触发（但不是该行完全删除的情况）。
+        <code>change(更改)</code>对象与传递给编辑器对象上的<a href="#event_change">change event(更改事件)</a>的对象类似。
+      </dd>
     </dl>
 
-    <p>Marked range handles (<code>CodeMirror.TextMarker</code>), as returned
-    by <a href="#markText"><code>markText</code></a>
-    and <a href="#setBookmark"><code>setBookmark</code></a>, emit the
-    following events:</p>
+    <p>由<a href="#markText"><code>markText</code></a>和<a href="#setBookmark"><code>setBookmark</code></a>返回的标记范围句柄（<code>CodeMirror.TextMarker</code>）产生以下事件：</p>
 
     <dl>
       <dt id="event_beforeCursorEnter"><code><strong>"beforeCursorEnter"</strong> ()</code></dt>
-      <dd>Fired when the cursor enters the marked range. From this
-      event handler, the editor state may be inspected
-      but <em>not</em> modified, with the exception that the range on
-      which the event fires may be cleared.</dd>
+      <dd>光标进入标记范围时触发。
+        在此事件处理程序中，编辑器状态可能会被检查但<em>不会</em>被修改，除了事件触发的范围可能会被清除。
+      </dd>
+
       <dt id="event_clear"><code><strong>"clear"</strong> (from: {line, ch}, to: {line, ch})</code></dt>
-      <dd>Fired when the range is cleared, either through cursor
-      movement in combination
-      with <a href="#mark_clearOnEnter"><code>clearOnEnter</code></a>
-      or through a call to its <code>clear()</code> method. Will only
-      be fired once per handle. Note that deleting the range through
-      text editing does not fire this event, because an undo action
-      might bring the range back into existence. <code>from</code>
-      and <code>to</code> give the part of the document that the range
-      spanned when it was cleared.</dd>
+      <dd>通过光标移动与<a href="#mark_clearOnEnter"><code>clearOnEnter</code></a>组合或通过调用<code>clear()</code>方法清除范围时触发。
+        每次操作只能触发一次。请注意，通过文本编辑删除范围不会触发此事件，因为撤消操作可能会使范围恢复生效。
+        <code>from</code>和<code>to</code>给出被清除的有限范围的文档的一部分。
+      </dd>
+
       <dt id="event_hide"><code><strong>"hide"</strong> ()</code></dt>
-      <dd>Fired when the last part of the marker is removed from the
-      document by editing operations.</dd>
+      <dd>通过编辑操作将标记的最后部分从文档中移除时触发。</dd>
+
       <dt id="event_unhide"><code><strong>"unhide"</strong> ()</code></dt>
-      <dd>Fired when, after the marker was removed by editing, a undo
-      operation brought the marker back.</dd>
+      <dd>在通过编辑删除标记之后，撤消操作将标记返回。</dd>
     </dl>
 
-    <p>Line widgets (<code>CodeMirror.LineWidget</code>), returned
-    by <a href="#addLineWidget"><code>addLineWidget</code></a>, fire
-    these events:</p>
+    <p>由<a href="#addLineWidget"><code>addLineWidget</code></a>返回的行部件(<code>CodeMirror.LineWidget</code>)将触发这些事件：</p>
 
     <dl>
       <dt id="event_redraw"><code><strong>"redraw"</strong> ()</code></dt>
-      <dd>Fired whenever the editor re-adds the widget to the DOM.
-      This will happen once right after the widget is added (if it is
-      scrolled into view), and then again whenever it is scrolled out
-      of view and back in again, or when changes to the editor options
-      or the line the widget is on require the widget to be
-      redrawn.</dd>
+      <dd>编辑器重新将小部件添加到DOM时触发。
+        这会在添加窗口小部件后立即发生（如果它被滚动到视图中），
+        然后当窗口滚动出视图并再次返回时，或者当编辑器选项或窗口小部件所在行需要要重画的小部件。
+      </dd>
     </dl>
 </section>
 
