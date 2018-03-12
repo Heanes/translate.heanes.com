@@ -547,27 +547,17 @@
 <section id=keymaps>
     <h2>Key Maps(按键映射)</h2>
 
-    <p>Key maps are ways to associate keys and mouse buttons with
-    functionality. A key map is an object mapping strings that
-    identify the buttons to functions that implement their
-    functionality.</p>
+    <p>键映射是将键和鼠标按钮与功能相关联的方式。键映射是一个映射字符串的对象，将字符串标识为实现其功能的函数。</p>
 
-    <p>The CodeMirror distributions comes
-    with <a href="../demo/emacs.html">Emacs</a>, <a href="../demo/vim.html">Vim</a>,
-    and <a href="../demo/sublime.html">Sublime Text</a>-style keymaps.</p>
+    <p>CodeMirror发行版附带<a href="../demo/emacs.html">Emacs</a>，<a href="../demo/vim.html">Vim</a>和<a href="../demo/sublime.html">Sublime Text</a>-style键盘映射。</p>
 
-    <p>Keys are identified either by name or by character.
-    The <code>CodeMirror.keyNames</code> object defines names for
-    common keys and associates them with their key codes. Examples of
-    names defined here are <code>Enter</code>, <code>F5</code>,
-    and <code>Q</code>. These can be prefixed
-    with <code>Shift-</code>, <code>Cmd-</code>, <code>Ctrl-</code>,
-    and <code>Alt-</code> to specify a modifier. So for
-    example, <code>Shift-Ctrl-Space</code> would be a valid key
-    identifier.</p>
+    <p>按键由名称或字符标识。<code>CodeMirror.keyNames</code>对象定义了公共按键的名称，并将它们与其关键代码关联起来。
+      这里定义的名字的例子是<code>Enter</code>，<code>F5</code>和<code>Q</code>。
+      这些可以用<code>Shift-</code>，<code>Cmd-</code>，<code>Ctrl-</code>和<code>Alt-</code>作为前缀来指定一个修饰符。
+      因此，例如，Shift-Ctrl-Space将是一个有效的按键标识符。
+    </p>
 
-    <p>Common example: map the Tab key to insert spaces instead of a tab
-    character.</p>
+    <p>常见示例：映射Tab键以插入空格而不是制表符。</p>
 
     <pre data-lang="javascript">
 editor.setOption("extraKeys", {
@@ -577,68 +567,50 @@ editor.setOption("extraKeys", {
   }
 });</pre>
 
-    <p>Alternatively, a character can be specified directly by
-    surrounding it in single quotes, for example <code>'$'</code>
-    or <code>'q'</code>. Due to limitations in the way browsers fire
-    key events, these may not be prefixed with modifiers.</p>
+    <p>或者，可以通过用单引号括起来直接指定字符，例如<code>'$'</code>或<code>'q'</code>。
+      由于浏览器触发按键事件的方式受到限制，因此这些事件可能不会以修饰符作为前缀。
+    </p>
 
-    <p>To bind mouse buttons, use the names `LeftClick`,
-    `MiddleClick`, and `RightClick`. These can also be prefixed with
-    modifiers, and in addition, the word `Double` or `Triple` can be
-    put before `Click` (as in `LeftDoubleClick`) to bind a double- or
-    triple-click. The function for such a binding is passed the
-    position that was clicked as second argument.</p>
+    <p>要绑定鼠标按钮，请使用名称`LeftClick`，`MiddleClick`和`RightClick`。
+      这些也可以用修饰符作为前缀，另外，单词`Double`或`Triple`可以放在Click之前（如`LeftDoubleClick`）来绑定双击或三击。
+      这种绑定的函数传递了被点击的位置作为第二个参数。
+    </p>
 
-    <p id="normalizeKeyMap">Multi-stroke key bindings can be specified
-    by separating the key names by spaces in the property name, for
-    example <code>Ctrl-X Ctrl-V</code>. When a map contains
-    multi-stoke bindings or keys with modifiers that are not specified
-    in the default order (<code>Shift-Cmd-Ctrl-Alt</code>), you must
-    call <code>CodeMirror.normalizeKeyMap</code> on it before it can
-    be used. This function takes a keymap and modifies it to normalize
-    modifier order and properly recognize multi-stroke bindings. It
-    will return the keymap itself.</p>
+    <p id="normalizeKeyMap">
+      多键绑定可以通过在属性名称中用空格分隔键名来指定，例如<code>Ctrl-X Ctrl-V</code>。
+      当映射包含多键绑定或具有未按默认顺序（<code>Shift-Cmd-Ctrl-Alt</code>）指定的修饰符的键时，
+      必须先调用CodeMirror.normalizeKeyMap才能使用它。
+      该函数使用键映射并修改它以使修饰符顺序标准化并正确识别多键绑定。它将返回键映射本身。
+    </p>
 
-    <p>The <code>CodeMirror.keyMap</code> object associates key maps
-    with names. User code and key map definitions can assign extra
-    properties to this object. Anywhere where a key map is expected, a
-    string can be given, which will be looked up in this object. It
-    also contains the <code>"default"</code> key map holding the
-    default bindings.</p>
+    <p>
+      <code>CodeMirror.keyMap</code>对象将键映射与名称关联。用户代码和键映射定义可以为此对象分配额外的属性。
+      在预期有键映射的任何地方，都可以给出一个字符串，这个字符将在这个对象中查找。
+      它还包含保存默认绑定的<code>"default"</code>键映射。
+    </p>
 
-    <p>The values of properties in key maps can be either functions of
-    a single argument (the CodeMirror instance), strings, or
-    <code>false</code>. Strings refer
-    to <a href="#commands">commands</a>, which are described below. If
-    the property is set to <code>false</code>, CodeMirror leaves
-    handling of the key up to the browser. A key handler function may
-    return <code>CodeMirror.Pass</code> to indicate that it has
-    decided not to handle the key, and other handlers (or the default
-    behavior) should be given a turn.</p>
+    <p>
+      键映射中的属性值可以是单个参数（CodeMirror实例）的函数，字符串或<code>false</code>。
+      字符串指的是下面描述的<a href="#commands">commands(命令)</a>。如果该属性设置为<code>false</code>，则CodeMirror将离开对浏览器的处理。
+      快捷键处理函数可能会返回<code>CodeMirror.Pass</code>来表明它已决定不处理该快捷键，并且应转交给其他处理程序（或默认行为）。
+    </p>
 
-    <p>Keys mapped to command names that start with the
-    characters <code>"go"</code> or to functions that have a
-    truthy <code>motion</code> property (which should be used for
-    cursor-movement actions) will be fired even when an
-    extra <code>Shift</code> modifier is present (i.e. <code>"Up":
-    "goLineUp"</code> matches both up and shift-up). This is used to
-    easily implement shift-selection.</p>
+    <p>
+      映射到以字符<code>"go"</code>开头的命令名或具有真实<code>motion(运动)</code>属性（应该用于光标移动操作）的函数的键，
+      即使在存在额外的<code>Shift</code>修饰符时也会被触发（即<code>"Up":"goLineUp"</code>同时与up和shift-up相匹配）。这用于轻松实现shift辅助选择。
+    </p>
 
-    <p>Key maps can defer to each other by defining
-    a <code>fallthrough</code> property. This indicates that when a
-    key is not found in the map itself, one or more other maps should
-    be searched. It can hold either a single key map or an array of
-    key maps.</p>
+    <p>通过定义<code>fallthrough</code>属性，关键按键映射可以相互推迟。
+      这表明当在映射本身中没有找到对应按键时，应该搜索一个或多个其他映射。它可以保存单个键映射或一系列键映射。
+    </p>
 
-    <p>When a key map needs to set something up when it becomes
-    active, or tear something down when deactivated, it can
-    contain <code>attach</code> and/or <code>detach</code> properties,
-    which should hold functions that take the editor instance and the
-    next or previous keymap. Note that this only works for the
-    <a href="#option_keyMap">top-level keymap</a>, not for fallthrough
-    maps or maps added
-    with <a href="#option_extraKeys"><code>extraKeys</code></a>
-    or <a href="#addKeyMap"><code>addKeyMap</code></a>.</p>
+    <p>
+      当键映射变为活动状态时需要设置某些东西时，或者在停用时删除某些东西，
+      它可以包含<code>attach(附加)</code>属性和/或<code>detach(分离)</code>属性，
+      这些属性应该包含采用编辑器实例和下一个或上一个键映射的函数。
+      请注意，这仅适用于<a href="#option_keyMap">top-level keymap(顶级键盘映射)</a>，
+      而不适用于使用<a href="#option_extraKeys"><code>extraKeys</code></a>或<a href="#addKeyMap"><code>addKeyMap</code></a>添加的贯穿式映射或映射。
+    </p>
 </section>
 
 <section id=commands>
