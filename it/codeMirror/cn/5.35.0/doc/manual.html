@@ -616,197 +616,164 @@ editor.setOption("extraKeys", {
 <section id=commands>
     <h2>Commands(操作命令)</h2>
 
-    <p>Commands are parameter-less actions that can be performed on an
-    editor. Their main use is for key bindings. Commands are defined by
-    adding properties to the <code>CodeMirror.commands</code> object.
-    A number of common commands are defined by the library itself,
-    most of them used by the default key bindings. The value of a
-    command property must be a function of one argument (an editor
-    instance).</p>
+    <p>
+      命令是可以在编辑器上执行的无参数操作。它们的主要用途是用于按键绑定。通过向<code>CodeMirror.commands</code>对象添加属性来定义命令。
+      库本身定义了许多常用命令，其中大多数命令由默认的键绑定使用。命令属性的值必须是一个参数（编辑器实例）的函数。
+    </p>
 
-    <p>Some of the commands below are referenced in the default
-    key map, but not defined by the core library. These are intended to
-    be defined by user code or addons.</p>
+    <p>下面的一些命令在默认的键盘映射中被引用，但是没有被核心库定义。这些旨在由用户代码或插件定义。</p>
 
-    <p>Commands can also be run with
-    the <a href="#execCommand"><code>execCommand</code></a>
-    method.</p>
+    <p>命令也可以使用<a href="#execCommand"><code>execCommand</code></a>方法运行。</p>
 
     <dl>
       <dt class=command id=command_selectAll><code><strong>selectAll</strong></code><span class=keybinding>Ctrl-A (PC), Cmd-A (Mac)</span></dt>
-      <dd>Select the whole content of the editor.</dd>
+      <dd>选择编辑器的全部内容。</dd>
 
       <dt class=command id=command_singleSelection><code><strong>singleSelection</strong></code><span class=keybinding>Esc</span></dt>
-      <dd>When multiple selections are present, this deselects all but
-      the primary selection.</dd>
+      <dd>当存在多个选择时，这将取消选择除主要选择以外的所有选择。</dd>
 
       <dt class=command id=command_killLine><code><strong>killLine</strong></code><span class=keybinding>Ctrl-K (Mac)</span></dt>
-      <dd>Emacs-style line killing. Deletes the part of the line after
-      the cursor. If that consists only of whitespace, the newline at
-      the end of the line is also deleted.</dd>
+      <dd>Emacs式的killLine。删除光标后面的部分。如果只包含空格，则行尾的换行符也会被删除。</dd>
 
       <dt class=command id=command_deleteLine><code><strong>deleteLine</strong></code><span class=keybinding>Ctrl-D (PC), Cmd-D (Mac)</span></dt>
-      <dd>Deletes the whole line under the cursor, including newline at the end.</dd>
+      <dd>删除光标下的整行，包括最后的换行符。</dd>
 
       <dt class=command id=command_delLineLeft><code><strong>delLineLeft</strong></code></dt>
-      <dd>Delete the part of the line before the cursor.</dd>
+      <dd>删除光标前面的那一行。</dd>
 
       <dt class=command id=command_delWrappedLineLeft><code><strong>delWrappedLineLeft</strong></code><span class=keybinding>Cmd-Backspace (Mac)</span></dt>
-      <dd>Delete the part of the line from the left side of the visual line the cursor is on to the cursor.</dd>
+      <dd>从光标所在视线的左侧删除光标所在行的部分。</dd>
 
       <dt class=command id=command_delWrappedLineRight><code><strong>delWrappedLineRight</strong></code><span class=keybinding>Cmd-Delete (Mac)</span></dt>
-      <dd>Delete the part of the line from the cursor to the right side of the visual line the cursor is on.</dd>
+      <dd>从光标所在视线的右侧删除光标所在行的部分。</dd>
 
       <dt class=command id=command_undo><code><strong>undo</strong></code><span class=keybinding>Ctrl-Z (PC), Cmd-Z (Mac)</span></dt>
-      <dd>Undo the last change. Note that, because browsers still
-      don't make it possible for scripts to react to or customize the
-      context menu, selecting undo (or redo) from the context menu in
-      a CodeMirror instance does not work.</dd>
+      <dd>撤销上次更改。撤消上次更改。 请注意，由于浏览器仍不能使脚本对上下文菜单作出反应或自定义上下文菜单，
+        因此在CodeMirror实例的上下文菜单中选择撤销（或重做）不起作用。</dd>
 
       <dt class=command id=command_redo><code><strong>redo</strong></code><span class=keybinding>Ctrl-Y (PC), Shift-Cmd-Z (Mac), Cmd-Y (Mac)</span></dt>
-      <dd>Redo the last undone change.</dd>
+      <dd>重做上次撤销的更改。</dd>
 
       <dt class=command id=command_undoSelection><code><strong>undoSelection</strong></code><span class=keybinding>Ctrl-U (PC), Cmd-U (Mac)</span></dt>
-      <dd>Undo the last change to the selection, or if there are no
-      selection-only changes at the top of the history, undo the last
-      change.</dd>
+      <dd>撤消对选定内容的最后一次更改，或者如果仅选定内容没有更改历史，则撤消最后一次更改。</dd>
 
       <dt class=command id=command_redoSelection><code><strong>redoSelection</strong></code><span class=keybinding>Alt-U (PC), Shift-Cmd-U (Mac)</span></dt>
-      <dd>Redo the last change to the selection, or the last text change if
-      no selection changes remain.</dd>
+      <dd>重做对所选内容的最后一次更改，如果选定内容没有之前的更改，则重做最后一次文本更改。</dd>
 
       <dt class=command id=command_goDocStart><code><strong>goDocStart</strong></code><span class=keybinding>Ctrl-Home (PC), Cmd-Up (Mac), Cmd-Home (Mac)</span></dt>
-      <dd>Move the cursor to the start of the document.</dd>
+      <dd>将光标移动到文档的起始位置。</dd>
 
       <dt class=command id=command_goDocEnd><code><strong>goDocEnd</strong></code><span class=keybinding>Ctrl-End (PC), Cmd-End (Mac), Cmd-Down (Mac)</span></dt>
-      <dd>Move the cursor to the end of the document.</dd>
+      <dd>将光标移动到文档的末尾位置。</dd>
 
       <dt class=command id=command_goLineStart><code><strong>goLineStart</strong></code><span class=keybinding>Alt-Left (PC), Ctrl-A (Mac)</span></dt>
-      <dd>Move the cursor to the start of the line.</dd>
+      <dd>将光标移动到行的起始位置。</dd>
 
       <dt class=command id=command_goLineStartSmart><code><strong>goLineStartSmart</strong></code><span class=keybinding>Home</span></dt>
-      <dd>Move to the start of the text on the line, or if we are
-      already there, to the actual start of the line (including
-      whitespace).</dd>
+      <dd>移动到行中文本的开头，或者如果光标已经在此处，则移动到行的实际开头(包括空白)。</dd>
 
       <dt class=command id=command_goLineEnd><code><strong>goLineEnd</strong></code><span class=keybinding>Alt-Right (PC), Ctrl-E (Mac)</span></dt>
-      <dd>Move the cursor to the end of the line.</dd>
+      <dd>将光标移动到行的末尾位置。</dd>
 
       <dt class=command id=command_goLineRight><code><strong>goLineRight</strong></code><span class=keybinding>Cmd-Right (Mac)</span></dt>
-      <dd>Move the cursor to the right side of the visual line it is on.</dd>
+      <dd>将光标移动到其所在的可视线的右侧。</dd>
 
       <dt class=command id=command_goLineLeft><code><strong>goLineLeft</strong></code><span class=keybinding>Cmd-Left (Mac)</span></dt>
-      <dd>Move the cursor to the left side of the visual line it is on. If
-      this line is wrapped, that may not be the start of the line.</dd>
+      <dd>将光标移动到其所在的可视线的左侧。如果此行已换行，则可能不是行的开头。</dd>
 
       <dt class=command id=command_goLineLeftSmart><code><strong>goLineLeftSmart</strong></code></dt>
-      <dd>Move the cursor to the left side of the visual line it is
-      on. If that takes it to the start of the line, behave
-      like <a href="#command_goLineStartSmart"><code>goLineStartSmart</code></a>.</dd>
+      <dd>将光标移至其所在视觉线的左侧。如果已经在行的起始位置，将表现得像<a href="#command_goLineStartSmart"><code>goLineStartSmart</code></a>一样的行为。</dd>
 
       <dt class=command id=command_goLineUp><code><strong>goLineUp</strong></code><span class=keybinding>Up, Ctrl-P (Mac)</span></dt>
-      <dd>Move the cursor up one line.</dd>
+      <dd>将光标向上移动一行。</dd>
 
       <dt class=command id=command_goLineDown><code><strong>goLineDown</strong></code><span class=keybinding>Down, Ctrl-N (Mac)</span></dt>
-      <dd>Move down one line.</dd>
+      <dd>将光标向下移动一行。</dd>
 
       <dt class=command id=command_goPageUp><code><strong>goPageUp</strong></code><span class=keybinding>PageUp, Shift-Ctrl-V (Mac)</span></dt>
-      <dd>Move the cursor up one screen, and scroll up by the same distance.</dd>
+      <dd>将光标向上移动一个屏幕，并向上滚动相同的距离。</dd>
 
       <dt class=command id=command_goPageDown><code><strong>goPageDown</strong></code><span class=keybinding>PageDown, Ctrl-V (Mac)</span></dt>
-      <dd>Move the cursor down one screen, and scroll down by the same distance.</dd>
+      <dd>将光标向下移动一个屏幕，并向下滚动相同的距离。</dd>
 
       <dt class=command id=command_goCharLeft><code><strong>goCharLeft</strong></code><span class=keybinding>Left, Ctrl-B (Mac)</span></dt>
-      <dd>Move the cursor one character left, going to the previous line
-      when hitting the start of line.</dd>
+      <dd>将光标向左移动一个字符，到达行首时移至上一行。</dd>
 
       <dt class=command id=command_goCharRight><code><strong>goCharRight</strong></code><span class=keybinding>Right, Ctrl-F (Mac)</span></dt>
-      <dd>Move the cursor one character right, going to the next line
-      when hitting the end of line.</dd>
+      <dd>将光标向右移动一个字符，到达行首时移至下一行。</dd>
 
       <dt class=command id=command_goColumnLeft><code><strong>goColumnLeft</strong></code></dt>
-      <dd>Move the cursor one character left, but don't cross line boundaries.</dd>
+      <dd>将光标向左移动一个字符，但不要越过线边界。</dd>
 
       <dt class=command id=command_goColumnRight><code><strong>goColumnRight</strong></code></dt>
-      <dd>Move the cursor one character right, don't cross line boundaries.</dd>
+      <dd>将光标向右移动一个字符，但不要越过线边界。</dd>
 
       <dt class=command id=command_goWordLeft><code><strong>goWordLeft</strong></code><span class=keybinding>Alt-B (Mac)</span></dt>
-      <dd>Move the cursor to the start of the previous word.</dd>
+      <dd>将光标移到上一个单词的开头。</dd>
 
       <dt class=command id=command_goWordRight><code><strong>goWordRight</strong></code><span class=keybinding>Alt-F (Mac)</span></dt>
-      <dd>Move the cursor to the end of the next word.</dd>
+      <dd>将光标移到下一个单词的末尾。</dd>
 
       <dt class=command id=command_goGroupLeft><code><strong>goGroupLeft</strong></code><span class=keybinding>Ctrl-Left (PC), Alt-Left (Mac)</span></dt>
-      <dd>Move to the left of the group before the cursor. A group is
-      a stretch of word characters, a stretch of punctuation
-      characters, a newline, or a stretch of <em>more than one</em>
-      whitespace character.</dd>
+      <dd>移动到光标之前的群组左侧。组是一段文字字符、一段标点字符、一行换行符或<em>一段以上</em>空白字符。</dd>
 
       <dt class=command id=command_goGroupRight><code><strong>goGroupRight</strong></code><span class=keybinding>Ctrl-Right (PC), Alt-Right (Mac)</span></dt>
-      <dd>Move to the right of the group after the cursor
-      (see <a href="#command_goGroupLeft">above</a>).</dd>
+      <dd>移动到光标后的群组右侧。(见 <a href="#command_goGroupLeft">上文</a>).</dd>
 
       <dt class=command id=command_delCharBefore><code><strong>delCharBefore</strong></code><span class=keybinding>Shift-Backspace, Ctrl-H (Mac)</span></dt>
-      <dd>Delete the character before the cursor.</dd>
+      <dd>删除光标前的字符。</dd>
 
       <dt class=command id=command_delCharAfter><code><strong>delCharAfter</strong></code><span class=keybinding>Delete, Ctrl-D (Mac)</span></dt>
-      <dd>Delete the character after the cursor.</dd>
+      <dd>删除光标后的字符。</dd>
 
       <dt class=command id=command_delWordBefore><code><strong>delWordBefore</strong></code><span class=keybinding>Alt-Backspace (Mac)</span></dt>
-      <dd>Delete up to the start of the word before the cursor.</dd>
+      <dd>删除至光标前的单词开头。</dd>
 
       <dt class=command id=command_delWordAfter><code><strong>delWordAfter</strong></code><span class=keybinding>Alt-D (Mac)</span></dt>
-      <dd>Delete up to the end of the word after the cursor.</dd>
+      <dd>删除至光标后的单词末尾。</dd>
 
       <dt class=command id=command_delGroupBefore><code><strong>delGroupBefore</strong></code><span class=keybinding>Ctrl-Backspace (PC), Alt-Backspace (Mac)</span></dt>
-      <dd>Delete to the left of the <a href="#command_goGroupLeft">group</a> before the cursor.</dd>
+      <dd>删除光标前<a href="#command_goGroupLeft">组</a>左侧的。</dd>
 
       <dt class=command id=command_delGroupAfter><code><strong>delGroupAfter</strong></code><span class=keybinding>Ctrl-Delete (PC), Ctrl-Alt-Backspace (Mac), Alt-Delete (Mac)</span></dt>
-      <dd>Delete to the start of the <a href="#command_goGroupLeft">group</a> after the cursor.</dd>
+      <dd>删除至光标后<a href="#command_goGroupLeft">组</a>的开始。</dd>
 
       <dt class=command id=command_indentAuto><code><strong>indentAuto</strong></code><span class=keybinding>Shift-Tab</span></dt>
-      <dd>Auto-indent the current line or selection.</dd>
+      <dd>自动缩进当前行或选定内容。</dd>
 
       <dt class=command id=command_indentMore><code><strong>indentMore</strong></code><span class=keybinding>Ctrl-] (PC), Cmd-] (Mac)</span></dt>
-      <dd>Indent the current line or selection by one <a href="#option_indentUnit">indent unit</a>.</dd>
+      <dd>按一个<a href="#option_indentUnit">缩进单位</a>缩进当前行或选定内容。</dd>
 
       <dt class=command id=command_indentLess><code><strong>indentLess</strong></code><span class=keybinding>Ctrl-[ (PC), Cmd-[ (Mac)</span></dt>
-      <dd>Dedent the current line or selection by one <a href="#option_indentUnit">indent unit</a>.</dd>
+      <dd>按一个<a href="#option_indentUnit">缩进单位</a>对当前行或选定内容取消缩进。</dd>
 
       <dt class=command id=command_insertTab><code><strong>insertTab</strong></code></dt>
-      <dd>Insert a tab character at the cursor.</dd>
+      <dd>在光标处插入制表符。</dd>
 
       <dt class=command id=command_insertSoftTab><code><strong>insertSoftTab</strong></code></dt>
-      <dd>Insert the amount of spaces that match the width a tab at
-      the cursor position would have.</dd>
+      <dd>在光标处插入与制表符宽度匹配的若干空白字符。</dd>
 
       <dt class=command id=command_defaultTab><code><strong>defaultTab</strong></code><span class=keybinding>Tab</span></dt>
-      <dd>If something is selected, indent it by
-      one <a href="#option_indentUnit">indent unit</a>. If nothing is
-      selected, insert a tab character.</dd>
+      <dd>如果选择了某个对象，将其缩进一个<a href="#option_indentUnit">缩进单位</a>。如果未选择任何内容，则插入制表符。</dd>
 
       <dt class=command id=command_transposeChars><code><strong>transposeChars</strong></code><span class=keybinding>Ctrl-T (Mac)</span></dt>
-      <dd>Swap the characters before and after the cursor.</dd>
+      <dd>交换光标前后的字符。</dd>
 
       <dt class=command id=command_newlineAndIndent><code><strong>newlineAndIndent</strong></code><span class=keybinding>Enter</span></dt>
-      <dd>Insert a newline and auto-indent the new line.</dd>
+      <dd>插入换行符并自动缩进新行。</dd>
 
       <dt class=command id=command_toggleOverwrite><code><strong>toggleOverwrite</strong></code><span class=keybinding>Insert</span></dt>
-      <dd>Flip the <a href="#toggleOverwrite">overwrite</a> flag.</dd>
+      <dd>翻转<a href="#toggleOverwrite">overwrite覆写</a>标志。</dd>
 
       <dt class=command id=command_save><code><strong>save</strong></code><span class=keybinding>Ctrl-S (PC), Cmd-S (Mac)</span></dt>
-      <dd>Not defined by the core library, only referred to in
-      key maps. Intended to provide an easy way for user code to define
-      a save command.</dd>
+      <dd>未由核心库定义，仅在键映射中引用。旨在为用户代码定义save命令提供一种简单的方法。</dd>
 
       <dt class=command id=command_find><code><strong>find</strong></code><span class=keybinding>Ctrl-F (PC), Cmd-F (Mac)</span></dt>
       <dt class=command id=command_findNext><code><strong>findNext</strong></code><span class=keybinding>Ctrl-G (PC), Cmd-G (Mac)</span></dt>
       <dt class=command id=command_findPrev><code><strong>findPrev</strong></code><span class=keybinding>Shift-Ctrl-G (PC), Shift-Cmd-G (Mac)</span></dt>
       <dt class=command id=command_replace><code><strong>replace</strong></code><span class=keybinding>Shift-Ctrl-F (PC), Cmd-Alt-F (Mac)</span></dt>
       <dt class=command id=command_replaceAll><code><strong>replaceAll</strong></code><span class=keybinding>Shift-Ctrl-R (PC), Shift-Cmd-Alt-F (Mac)</span></dt>
-      <dd>Not defined by the core library, but defined in
-      the <a href="#addon_search">search addon</a> (or custom client
-      addons).</dd>
+      <dd>不是由核心库定义的，而是在<a href="#addon_search">搜索插件</a>(或自定义客户端插件)中定义的。</dd>
 
     </dl>
 
